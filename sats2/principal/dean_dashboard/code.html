@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Institution Attendance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --deep-blue: #0A2342;
+            --charcoal-grey: #333333;
+            --white: #FFFFFF;
+            --green-accent: #28a745;
+            --amber-accent: #ffc107;
+            --red-accent: #dc3545;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: var(--charcoal-grey);
+        }
+        .card {
+            @apply bg-white rounded-xl shadow-md p-6 border border-gray-200/80;
+        }
+        .kpi-card {
+            @apply card flex flex-col justify-between;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<div class="flex h-auto min-h-screen w-full flex-col">
+<header class="sticky top-0 z-30 flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-200 bg-white/90 px-8 py-3 backdrop-blur-sm">
+<div class="flex items-center gap-4 text-slate-900">
+<div class="h-9 w-9 text-[var(--deep-blue)]">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-[var(--deep-blue)]" style="font-family: 'Poppins', sans-serif;">Smart Attendance</h2>
+</div>
+<div class="flex flex-1 items-center justify-end gap-6">
+<nav class="hidden items-center gap-6 md:flex">
+<a class="rounded-md bg-[var(--deep-blue)] px-3 py-2 text-sm font-medium text-white" href="#">Dashboard</a>
+<a class="text-sm font-medium text-gray-600 hover:text-[var(--deep-blue)]" href="#">Reports</a>
+<a class="text-sm font-medium text-gray-600 hover:text-[var(--deep-blue)]" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gray-600 hover:text-[var(--deep-blue)]">notifications</button>
+<div class="h-10 w-10 overflow-hidden rounded-full">
+<img alt="User avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnXD31peZvkHa9MVGigO98H9VX-askxMdmXNBa002FgHa0zPHaiTo4GuA4CBDC-7r7kD2m_HYR8wmI_gvUx_FJ5mCa7DG7LpMFckRRYWzicwdgoT_X5fA6zF-K237DLeXOlOzf83zIbJrQqUz2dtIWsdcGsNfc40JQ3wfuAJZlbNChDFy5axxl_lc97-toEb5-ovxh6Kk8lld_jUknCm4ozK-5llU1wR_bvBH9IrP3Cw8N0BUnCcOB04yC56SPn_ElmLjW6XxthABB"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 bg-[#f8f9fa] px-4 py-8 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-screen-2xl">
+<div class="mb-8">
+<h1 class="text-3xl font-bold tracking-tight text-[var(--deep-blue)]" style="font-family: 'Poppins', sans-serif;">Institution Attendance Dashboard</h1>
+<p class="mt-1 text-gray-500">Welcome, Principal Sarah Johnson. Here's your institution's attendance summary.</p>
+</div>
+<div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+<div class="lg:col-span-2">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+<div class="kpi-card">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-gray-500">Overall Attendance (YTD)</p>
+<span class="material-symbols-outlined text-green-500">trending_up</span>
+</div>
+<p class="mt-2 text-4xl font-bold text-[var(--deep-blue)]">96.3%</p>
+<div class="mt-3 flex items-center justify-between">
+<span class="text-xs text-green-600 font-semibold">+0.8% vs. Last Month</span>
+<svg class="w-20 h-5 text-[var(--green-accent)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 30">
+<path d="M 0 25 Q 10 10, 20 20 T 40 15 T 60 25 T 80 10 T 100 20"></path>
+</svg>
+</div>
+</div>
+<div class="kpi-card">
+<p class="text-sm font-medium text-gray-500">Live Attendance Today</p>
+<p class="mt-2 text-4xl font-bold text-[var(--deep-blue)]">94.8%</p>
+<div class="mt-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5">
+<div class="bg-[var(--green-accent)] h-2.5 rounded-full" style="width: 94.8%"></div>
+</div>
+<p class="text-right text-xs mt-1 text-gray-500">Target: 95%</p>
+</div>
+</div>
+<div class="kpi-card">
+<p class="text-sm font-medium text-gray-500">Students Absent Today</p>
+<p class="mt-2 text-4xl font-bold text-[var(--amber-accent)]">23</p>
+<div class="mt-3 flex justify-between items-center">
+<span class="text-xs text-gray-500 font-medium">-5 from yesterday</span>
+<button class="text-xs font-semibold text-white bg-[var(--deep-blue)] hover:bg-opacity-90 px-3 py-1.5 rounded-md">View List</button>
+</div>
+</div>
+<div class="kpi-card">
+<p class="text-sm font-medium text-gray-500">At-Risk Students</p>
+<p class="mt-2 text-4xl font-bold text-[var(--red-accent)]">12</p>
+<div class="mt-3 flex justify-end">
+<button class="text-xs font-semibold text-white bg-[var(--red-accent)] hover:bg-opacity-90 px-3 py-1.5 rounded-md">Take Action</button>
+</div>
+</div>
+</div>
+<div class="card mt-6">
+<div class="flex flex-wrap items-center justify-between gap-4">
+<h2 class="text-lg font-semibold text-[var(--deep-blue)]" style="font-family: 'Poppins', sans-serif;">Attendance Rate Over Time</h2>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200">Week</button>
+<button class="px-3 py-1 text-sm font-medium text-white bg-[var(--deep-blue)] rounded-md">Month</button>
+<button class="px-3 py-1 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200">Quarter</button>
+</div>
+</div>
+<div class="mt-6 h-80 relative">
+<svg height="100%" preserveAspectRatio="none" viewBox="0 0 500 250" width="100%">
+<line stroke="#888" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="500" y1="50" y2="50"></line>
+<text fill="#888" font-family="Inter" font-size="10" x="460" y="45">95% Target</text>
+<path d="M 0 80 C 50 100, 100 90, 150 70 L 150 50 C 100 50, 50 50, 0 50 Z" fill="rgba(220, 53, 69, 0.1)"></path>
+<path d="M 250 90 C 300 120, 350 110, 400 100 L 400 50 C 350 50, 300 50, 250 50 Z" fill="rgba(220, 53, 69, 0.1)"></path>
+<path d="M 0 80 C 50 100, 100 90, 150 70 S 200 20, 250 90 S 300 120, 350 110 S 400 100, 450 60 S 500 80, 500 80 V 250 H 0 Z" fill="rgba(10, 35, 66, 0.1)"></path>
+<path d="M 0 80 C 50 100, 100 90, 150 70 S 200 20, 250 90 S 300 120, 350 110 S 400 100, 450 60 S 500 80, 500 80" fill="none" stroke="var(--deep-blue)" stroke-width="2.5"></path>
+<g class="text-xs text-gray-500" fill="#6b7280" font-family="Inter" font-size="10">
+<text x="25" y="245">Jan</text>
+<text x="105" y="245">Feb</text>
+<text x="185" y="245">Mar</text>
+<text x="265" y="245">Apr</text>
+<text x="345" y="245">May</text>
+<text x="425" y="245">Jun</text>
+</g>
+</svg>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="card">
+<h2 class="text-lg font-semibold text-[var(--deep-blue)] mb-4" style="font-family: 'Poppins', sans-serif;">Quick Actions &amp; Highlights</h2>
+<div class="space-y-4">
+<div>
+<h3 class="font-semibold text-base mb-3 flex items-center text-gray-800">
+<span class="material-symbols-outlined text-[var(--red-accent)] mr-2">error</span>
+                                        Critical Alerts
+                                    </h3>
+<div class="space-y-3">
+<div class="bg-red-50 p-3 rounded-lg flex items-start text-sm">
+<span class="material-symbols-outlined text-red-500 mt-0.5 mr-2 text-base">person_alert</span>
+<div>
+<span class="font-bold text-gray-800">John Doe</span> (Engineering): 5 consecutive absences.
+                                            </div>
+</div>
+<div class="bg-red-50 p-3 rounded-lg flex items-start text-sm">
+<span class="material-symbols-outlined text-red-500 mt-0.5 mr-2 text-base">person_alert</span>
+<div>
+<span class="font-bold text-gray-800">Jane Smith</span> (Arts): Attendance dropped to 75%.
+                                            </div>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<h3 class="font-semibold text-base mb-3 flex items-center text-gray-800">
+<span class="material-symbols-outlined text-[var(--green-accent)] mr-2">verified</span>
+                                        Positive Highlights
+                                    </h3>
+<div class="space-y-3">
+<div class="bg-green-50 p-3 rounded-lg flex items-start text-sm">
+<span class="material-symbols-outlined text-green-500 mt-0.5 mr-2 text-base">school</span>
+<div>
+<span class="font-bold text-gray-800">Computer Science</span>: Achieved 98% attendance this week.
+                                            </div>
+</div>
+<div class="bg-green-50 p-3 rounded-lg flex items-start text-sm">
+<span class="material-symbols-outlined text-green-500 mt-0.5 mr-2 text-base">star</span>
+<div>
+<span class="font-bold text-gray-800">History 101</span>: Perfect attendance for 3 consecutive lectures.
+                                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6">
+<div class="card">
+<h2 class="text-lg font-semibold text-[var(--deep-blue)] mb-4" style="font-family: 'Poppins', sans-serif;">Department &amp; Course Insights</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="border-b-2 border-gray-200 text-gray-600">
+<tr>
+<th class="px-4 py-3 font-semibold">Department</th>
+<th class="px-4 py-3 font-semibold">Attendance Rate</th>
+<th class="px-4 py-3 font-semibold">Trend (7 Days)</th>
+<th class="px-4 py-3 font-semibold text-center">At-Risk Students</th>
+<th class="px-4 py-3 font-semibold"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200">
+<tr>
+<td class="whitespace-nowrap px-4 py-4 font-medium text-gray-900">Computer Science</td>
+<td class="whitespace-nowrap px-4 py-4">
+<div class="flex items-center gap-2">
+<span>97.2%</span>
+<div class="w-24 bg-gray-200 rounded-full h-2"><div class="bg-[var(--green-accent)] h-2 rounded-full" style="width: 97.2%"></div></div>
+</div>
+</td>
+<td class="whitespace-nowrap px-4 py-4">
+<svg class="w-24 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 30"><path d="M 0 25 Q 10 10, 20 15 T 40 5 T 60 10 T 80 5 T 100 12"></path></svg>
+</td>
+<td class="whitespace-nowrap px-4 py-4 text-center">2</td>
+<td class="whitespace-nowrap px-4 py-4 text-right">
+<button class="font-medium text-[var(--deep-blue)] hover:underline">View Details</button>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap px-4 py-4 font-medium text-gray-900">Engineering</td>
+<td class="whitespace-nowrap px-4 py-4">
+<div class="flex items-center gap-2">
+<span>91.8%</span>
+<div class="w-24 bg-gray-200 rounded-full h-2"><div class="bg-[var(--amber-accent)] h-2 rounded-full" style="width: 91.8%"></div></div>
+</div>
+</td>
+<td class="whitespace-nowrap px-4 py-4">
+<svg class="w-24 h-6 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 30"><path d="M 0 10 Q 10 25, 20 15 T 40 28 T 60 20 T 80 25 T 100 18"></path></svg>
+</td>
+<td class="whitespace-nowrap px-4 py-4 font-bold text-[var(--red-accent)] text-center">15</td>
+<td class="whitespace-nowrap px-4 py-4 text-right">
+<button class="font-medium text-[var(--deep-blue)] hover:underline">View Details</button>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap px-4 py-4 font-medium text-gray-900">Business</td>
+<td class="whitespace-nowrap px-4 py-4">
+<div class="flex items-center gap-2">
+<span>93.5%</span>
+<div class="w-24 bg-gray-200 rounded-full h-2"><div class="bg-[var(--amber-accent)] h-2 rounded-full" style="width: 93.5%"></div></div>
+</div>
+</td>
+<td class="whitespace-nowrap px-4 py-4">
+<svg class="w-24 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 30"><path d="M 0 20 Q 10 10, 20 12 T 40 8 T 60 15 T 80 10 T 100 5"></path></svg>
+</td>
+<td class="whitespace-nowrap px-4 py-4 text-center">8</td>
+<td class="whitespace-nowrap px-4 py-4 text-right">
+<button class="font-medium text-[var(--deep-blue)] hover:underline">View Details</button>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap px-4 py-4 font-medium text-gray-900">Arts &amp; Sciences</td>
+<td class="whitespace-nowrap px-4 py-4">
+<div class="flex items-center gap-2">
+<span>89.1%</span>
+<div class="w-24 bg-gray-200 rounded-full h-2"><div class="bg-[var(--red-accent)] h-2 rounded-full" style="width: 89.1%"></div></div>
+</div>
+</td>
+<td class="whitespace-nowrap px-4 py-4">
+<svg class="w-24 h-6 text-red-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 30"><path d="M 0 5 Q 10 15, 20 12 T 40 20 T 60 25 T 80 15 T 100 22"></path></svg>
+</td>
+<td class="whitespace-nowrap px-4 py-4 font-bold text-[var(--red-accent)] text-center">21</td>
+<td class="whitespace-nowrap px-4 py-4 text-right">
+<button class="font-medium text-[var(--deep-blue)] hover:underline">View Details</button>
+</td>
+</tr>
+<tr>
+<td class="whitespace-nowrap px-4 py-4 font-medium text-gray-900">Medicine</td>
+<td class="whitespace-nowrap px-4 py-4">
+<div class="flex items-center gap-2">
+<span>98.7%</span>
+<div class="w-24 bg-gray-200 rounded-full h-2"><div class="bg-[var(--green-accent)] h-2 rounded-full" style="width: 98.7%"></div></div>
+</div>
+</td>
+<td class="whitespace-nowrap px-4 py-4">
+<svg class="w-24 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 30"><path d="M 0 15 Q 10 5, 20 8 T 40 4 T 60 10 T 80 5 T 100 8"></path></svg>
+</td>
+<td class="whitespace-nowrap px-4 py-4 text-center">1</td>
+<td class="whitespace-nowrap px-4 py-4 text-right">
+<button class="font-medium text-[var(--deep-blue)] hover:underline">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

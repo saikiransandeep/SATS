@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Faculty Reports</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #e7f1fc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --background-color: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+        .dark {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --background-color: #0f172a;
+            --border-color: #334155;
+        }
+        .sidebar-link:hover {
+            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex min-h-screen">
+<aside class="w-64 bg-white dark:bg-slate-900 shadow-md flex-shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">school</span>
+<h1 class="text-[var(--text-primary)] text-xl font-bold">EduTrack</h1>
+</div>
+<p class="text-[var(--text-secondary)] text-sm mt-1">Faculty View</p>
+</div>
+<nav class="mt-8 px-4">
+<ul>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span>Attendance</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="absolute bottom-0 w-64 p-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<header class="flex flex-wrap justify-between items-center mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold text-[var(--text-primary)]">Faculty Reports</h1>
+<p class="text-[var(--text-secondary)] mt-1">Detailed attendance analytics and insights.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--secondary-color)] hover:text-[var(--primary-color)] transition-colors">
+<span class="material-symbols-outlined text-base">print</span> Print
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined text-base">download</span> Export Report
+                    </button>
+</div>
+</header>
+<div class="space-y-8">
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Filters</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="date-range">Date Range</label>
+<input class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="date-range" type="date"/>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="course-section">Course/Section</label>
+<select class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="course-section">
+<option>Computer Networks - CSE-B</option>
+<option>Data Structures - CSE-A</option>
+<option>Operating Systems - IT-B</option>
+</select>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="student-search">Student Search</label>
+<input class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="student-search" placeholder="Enter name or roll number" type="text"/>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="status-filter">Status</label>
+<select class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="status-filter">
+<option>All</option>
+<option>Present</option>
+<option>Absent</option>
+<option>Unmarked</option>
+<option>On-Duty (OD)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Overall Attendance %</h4>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-green-600">88.5%</p>
+<div class="flex items-center text-sm text-green-500 font-semibold">
+<span class="material-symbols-outlined text-base">trending_up</span>
+<span>1.2%</span>
+</div>
+</div>
+</div>
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Total Classes Held</h4>
+<p class="text-3xl font-bold text-[var(--text-primary)] mt-1">32</p>
+</div>
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Present Count</h4>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-[var(--text-primary)]">1274</p>
+<div class="flex items-center text-sm text-green-500 font-semibold">
+<span class="material-symbols-outlined text-base">trending_up</span>
+<span>25</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Absent Count</h4>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-[var(--text-primary)]">166</p>
+<div class="flex items-center text-sm text-red-500 font-semibold">
+<span class="material-symbols-outlined text-base">trending_down</span>
+<span>5</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Overall Class Attendance</h3>
+<canvas id="overallAttendanceChart"></canvas>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden">
+<div class="p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)]">Student List</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-[var(--text-secondary)]">
+<thead class="text-xs text-[var(--text-secondary)] uppercase bg-gray-50 dark:bg-slate-800">
+<tr>
+<th class="px-6 py-4" scope="col">Student Name</th>
+<th class="px-6 py-4" scope="col">Roll Number</th>
+<th class="px-6 py-4 text-center" scope="col">Present</th>
+<th class="px-6 py-4 text-center" scope="col">Absent</th>
+<th class="px-6 py-4 text-center" scope="col">Unmarked</th>
+<th class="px-6 py-4 text-center" scope="col">OD</th>
+<th class="px-6 py-4" scope="col" style="min-width: 200px;">Attendance %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Alice Johnson</td>
+<td class="px-6 py-5">CSE2001</td>
+<td class="px-6 py-5 text-center font-medium">30</td>
+<td class="px-6 py-5 text-center font-medium">2</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 93.75%"></div>
+</div>
+<span class="font-semibold text-green-500 w-12 text-right">93.8%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Bob Williams</td>
+<td class="px-6 py-5">CSE2002</td>
+<td class="px-6 py-5 text-center font-medium">28</td>
+<td class="px-6 py-5 text-center font-medium">4</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-yellow-500 h-2.5 rounded-full" style="width: 87.5%"></div>
+</div>
+<span class="font-semibold text-yellow-500 w-12 text-right">87.5%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Charlie Brown</td>
+<td class="px-6 py-5">CSE2003</td>
+<td class="px-6 py-5 text-center font-medium">32</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+</div>
+<span class="font-semibold text-green-500 w-12 text-right">100%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Diana Miller</td>
+<td class="px-6 py-5">CSE2004</td>
+<td class="px-6 py-5 text-center font-medium">24</td>
+<td class="px-6 py-5 text-center font-medium">7</td>
+<td class="px-6 py-5 text-center font-medium">1</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-red-500 h-2.5 rounded-full" style="width: 75%"></div>
+</div>
+<span class="font-semibold text-red-500 w-12 text-right">75.0%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Ethan Davis</td>
+<td class="px-6 py-5">CSE2005</td>
+<td class="px-6 py-5 text-center font-medium">28</td>
+<td class="px-6 py-5 text-center font-medium">2</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5 text-center font-medium">2</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 93.3%"></div>
+</div>
+<span class="font-semibold text-green-500 w-12 text-right">93.3%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const getColors = () => ({
+                green: 'rgb(34, 197, 94)',
+                red: 'rgb(239, 68, 68)',
+                yellow: 'rgb(234, 179, 8)',
+                blue: 'rgb(59, 130, 246)',
+                textPrimary: document.body.classList.contains('dark') ? '#f8fafc' : '#1a202c',
+                gridColor: document.body.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+            });
+            const colors = getColors();
+            // Overall Class Attendance Chart - Stacked Horizontal Bar
+            const overallCtx = document.getElementById('overallAttendanceChart').getContext('2d');
+            new Chart(overallCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Computer Networks - CSE-B'],
+                    datasets: [{
+                        label: 'Present',
+                        data: [1274],
+                        backgroundColor: colors.green,
+                        borderRadius: 4,
+                    }, {
+                        label: 'Absent',
+                        data: [166],
+                        backgroundColor: colors.red,
+                        borderRadius: 4,
+                    }, {
+                        label: 'Unmarked',
+                        data: [45], // Example data
+                        backgroundColor: colors.yellow,
+                        borderRadius: 4,
+                    }, {
+                        label: 'OD',
+                        data: [30], // Example data
+                        backgroundColor: colors.blue,
+                        borderRadius: 4,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: {
+                                color: colors.textPrimary,
+                                font: {
+                                    family: 'Manrope'
+                                }
+                            },
+                            grid: {
+                                color: colors.gridColor
+                            }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: {
+                                color: colors.textPrimary,
+                                font: {
+                                    family: 'Manrope'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: colors.textPrimary,
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                padding: 20,
+                                font: {
+                                    family: 'Manrope',
+                                    size: 14,
+                                }
+                            }
+                        },
+                        tooltip: {
+                            bodyFont: {
+                                family: 'Manrope'
+                            },
+                            titleFont: {
+                                family: 'Manrope'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body></html>

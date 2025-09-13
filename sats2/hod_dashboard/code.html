@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Manrope%3Awght%40400%3B500%3B700%3B800&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Department Attendance Overview</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+    :root {
+      --primary-50: #f0f7ff;
+      --primary-100: #e0effe;
+      --primary-200: #badffd;
+      --primary-300: #91cfff;
+      --primary-400: #60b6ff;
+      --primary-500: #3b9eff;
+      --primary-600: #1173d4;
+      --primary-700: #0d5aab;
+      --primary-800: #0a4687;
+      --primary-900: #08386d;
+      --primary-950: #05244a;
+    }
+  </style>
+</head>
+<body class="relative flex h-auto min-h-screen w-full flex-col bg-slate-50 group/design-root overflow-x-hidden" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex-grow flex flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 px-10 py-3 bg-white">
+<div class="flex items-center gap-4 text-slate-900">
+<div class="size-8 text-primary-600">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd" opacity="0.5"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 text-lg font-bold leading-tight tracking-[-0.015em]">EduTrack</h2>
+</div>
+<div class="flex items-center gap-6">
+<nav class="flex items-center gap-6">
+<a class="text-sm font-medium text-primary-600 font-semibold" href="#">Dashboard</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary-600 transition-colors" href="#">Attendance</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary-600 transition-colors" href="#">Reports</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary-600 transition-colors" href="#">Faculty Management</a>
+<a class="text-sm font-medium text-slate-700 hover:text-primary-600 transition-colors" href="#">Settings</a>
+</nav>
+<div class="w-px h-6 bg-slate-200"></div>
+<button class="relative">
+<span class="material-symbols-outlined text-slate-600 hover:text-primary-600 transition-colors">notifications</span>
+<div class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-primary-600 rounded-full border-2 border-white"></div>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFY1rIM6O98f1MBFMvJNY_LkUnpQobB2y_EK0_EGdDxoSeKkQ8n_2wcLwXU2bsGME5Aem_TWurp6jTdyjf3ct54f3LODdeDocprZ7DdiabiHG4txYZWO4jGjUaRF4noPWBf7vfhyGMvYbMOSyzpHjeIp9sKHmJ5gYH06Ff26Z69byi8A220bWC82Sf8_Nl6hHjZzk0I0ZnC81iEf7iK_fay39Gni-bpiLmCnv4iJpkF8JBsCPcekWCHhTRJFyLKbIrx1GHADi7DCxW");'></div>
+</div>
+</header>
+<main class="flex-1 px-10 py-8">
+<div class="max-w-screen-2xl mx-auto grid grid-cols-12 gap-8">
+<div class="col-span-12 lg:col-span-9">
+<div class="mb-8">
+<h1 class="text-3xl font-bold text-slate-900 tracking-tight">Department Attendance Overview</h1>
+<p class="text-slate-500 mt-1">Manage courses, faculty assignments, and track attendance for the department.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white border border-slate-200 rounded-lg p-6">
+<p class="text-slate-600 text-sm font-medium">Overall Department Attendance</p>
+<p class="text-slate-900 text-4xl font-bold mt-2">94.2<span class="text-2xl">%</span></p>
+<p class="text-sm text-slate-500 mt-1">Across all courses this semester</p>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col justify-between">
+<div>
+<p class="text-slate-600 text-sm font-medium">Total Active Faculty</p>
+<p class="text-slate-900 text-4xl font-bold mt-2">28</p>
+<p class="text-sm text-slate-500 mt-1">Assigned to active courses</p>
+</div>
+<a class="text-sm font-medium text-primary-600 hover:text-primary-700 mt-4 flex items-center gap-1" href="#">Manage Faculty <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col justify-between">
+<div>
+<p class="text-slate-600 text-sm font-medium">Total Courses Active</p>
+<p class="text-slate-900 text-4xl font-bold mt-2">45</p>
+<p class="text-sm text-slate-500 mt-1">For the current academic year</p>
+</div>
+<a class="text-sm font-medium text-primary-600 hover:text-primary-700 mt-4 flex items-center gap-1" href="#">Manage Courses <span class="material-symbols-outlined text-base">arrow_forward</span></a>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-lg">
+<div class="px-6 py-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-4">
+<h2 class="text-lg font-semibold text-slate-900">Course Management &amp; Faculty Assignment</h2>
+<div class="flex items-center gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 w-48 border border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500" placeholder="Search courses..." type="text"/>
+</div>
+<div class="relative">
+<select class="pl-4 pr-8 py-2 border border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white">
+<option>Filter by Year Level</option>
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+<div class="relative">
+<select class="pl-4 pr-8 py-2 border border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white">
+<option>Filter by Semester</option>
+<option>Fall</option>
+<option>Spring</option>
+<option>Summer</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+<button class="flex items-center gap-2 text-sm font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-md h-9 px-3 transition-colors">
+<span class="material-symbols-outlined text-lg">download</span> Export Data
+                </button>
+<button class="flex items-center gap-2 text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 rounded-md h-9 px-3 transition-colors">
+<span class="material-symbols-outlined text-lg">add</span> Add New Course
+                </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-slate-500">
+<thead class="text-xs text-slate-700 uppercase bg-slate-50">
+<tr>
+<th class="px-6 py-3 font-medium" scope="col">Subject / Course Name</th>
+<th class="px-6 py-3 font-medium" scope="col">Current Faculty</th>
+<th class="px-6 py-3 font-medium" scope="col">Class In-Charge</th>
+<th class="px-6 py-3 font-medium" scope="col">Attendance Rate</th>
+<th class="px-6 py-3 font-medium" scope="col">Last Updated</th>
+<th class="px-6 py-3 font-medium text-center" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white border-b border-slate-200 hover:bg-slate-50">
+<th class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap" scope="row">Advanced Web Development</th>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Dr. Emily Carter</option>
+<option>Dr. Ben Adams</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Dr. Emily Carter</option>
+<option>Prof. Alex Johnson</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-20 bg-green-100 rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width: 95%"></div></div>
+<span class="font-medium text-green-600">95%</span>
+</div>
+</td>
+<td class="px-6 py-4">2 hours ago</td>
+<td class="px-6 py-4 text-center">
+<button class="font-medium text-primary-600 hover:underline p-1">Edit</button>
+<button class="font-medium text-slate-600 hover:underline p-1">View</button>
+</td>
+</tr>
+<tr class="bg-white border-b border-slate-200 hover:bg-slate-50">
+<th class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap" scope="row">Machine Learning Fundamentals</th>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Prof. Alex Johnson</option>
+<option>Dr. Sarah Lee</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Prof. Alex Johnson</option>
+<option>Dr. Emily Carter</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-20 bg-amber-100 rounded-full h-1.5"><div class="bg-amber-500 h-1.5 rounded-full" style="width: 88%"></div></div>
+<span class="font-medium text-amber-600">88%</span>
+</div>
+</td>
+<td class="px-6 py-4">1 day ago</td>
+<td class="px-6 py-4 text-center">
+<button class="font-medium text-primary-600 hover:underline p-1">Edit</button>
+<button class="font-medium text-slate-600 hover:underline p-1">View</button>
+</td>
+</tr>
+<tr class="bg-white border-b border-slate-200 hover:bg-slate-50">
+<th class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap" scope="row">Cybersecurity Essentials</th>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Dr. Ben Adams</option>
+<option>Prof. Alex Johnson</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option>Assignment Needed</option>
+<option>Dr. Ben Adams</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-20 bg-red-100 rounded-full h-1.5"><div class="bg-red-500 h-1.5 rounded-full" style="width: 75%"></div></div>
+<span class="font-medium text-red-600">75%</span>
+</div>
+</td>
+<td class="px-6 py-4">3 days ago</td>
+<td class="px-6 py-4 text-center">
+<button class="font-medium text-primary-600 hover:underline p-1">Edit</button>
+<button class="font-medium text-slate-600 hover:underline p-1">View</button>
+</td>
+</tr>
+<tr class="bg-white hover:bg-slate-50">
+<th class="px-6 py-4 font-medium text-slate-900 whitespace-nowrap" scope="row">Cloud Computing Architecture</th>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Dr. Sarah Lee</option>
+<option>Dr. Emily Carter</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="relative">
+<select class="w-full border-slate-300 rounded-md text-sm focus:ring-primary-500 focus:border-primary-500 appearance-none bg-white p-2">
+<option selected="">Dr. Sarah Lee</option>
+<option>Dr. Ben Adams</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-slate-400">expand_more</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-20 bg-green-100 rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width: 98%"></div></div>
+<span class="font-medium text-green-600">98%</span>
+</div>
+</td>
+<td class="px-6 py-4">1 week ago</td>
+<td class="px-6 py-4 text-center">
+<button class="font-medium text-primary-600 hover:underline p-1">Edit</button>
+<button class="font-medium text-slate-600 hover:underline p-1">View</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-3">
+<div class="bg-white border border-slate-200 rounded-lg p-6 sticky top-8">
+<h3 class="text-lg font-semibold text-slate-900 mb-4">Department Alerts &amp; Reminders</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-3 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
+<span class="material-symbols-outlined text-yellow-600 mt-0.5">assignment_ind</span>
+<div>
+<p class="font-medium text-sm text-yellow-800">Assignment Needed</p>
+<p class="text-xs text-yellow-700">Cybersecurity Essentials needs a Class In-Charge.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-blue-50 border border-blue-200 rounded-md">
+<span class="material-symbols-outlined text-blue-600 mt-0.5">rate_review</span>
+<div>
+<p class="font-medium text-sm text-blue-800">Review Pending</p>
+<p class="text-xs text-blue-700">3 new course proposals are awaiting your review.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-red-50 border border-red-200 rounded-md">
+<span class="material-symbols-outlined text-red-600 mt-0.5">trending_down</span>
+<div>
+<p class="font-medium text-sm text-red-800">Low Attendance</p>
+<p class="text-xs text-red-700">Cybersecurity Essentials attendance is below 80%.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-indigo-50 border border-indigo-200 rounded-md">
+<span class="material-symbols-outlined text-indigo-600 mt-0.5">person_add</span>
+<div>
+<p class="font-medium text-sm text-indigo-800">New Student Enrolment</p>
+<p class="text-xs text-indigo-700">5 new students have been added to the department.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

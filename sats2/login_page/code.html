@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In to EduTrack</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #0056b3;
+            --primary-hover-color: #004494;
+            --link-color: #007BFF;
+            --text-color: #333333;
+            --error-color: #dc3545;
+            --background-color: #F4F6F8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+        }
+        .form-input {
+            @apply w-full rounded-md border-slate-300 py-3 px-4 text-base text-[var(--text-color)] placeholder-slate-400 shadow-sm focus:border-[var(--primary-color)] focus:ring-[var(--primary-color)] pl-11;
+        }
+        .form-input.error {
+            @apply border-[var(--error-color)] focus:border-[var(--error-color)] focus:ring-[var(--error-color)];
+        }
+        .error-message {
+            @apply text-[var(--error-color)] text-sm mt-1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+<div class="flex min-h-screen flex-col items-center justify-center bg-[var(--background-color)] p-4">
+<div class="w-full max-w-md">
+<div class="mb-8 text-center">
+<svg class="mx-auto h-12 w-12 text-[var(--primary-color)]" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+<h1 class="mt-4 text-3xl font-bold tracking-tight text-[var(--text-color)]">Sign In to Your Account</h1>
+</div>
+<div class="rounded-xl border border-slate-200 bg-white p-8 shadow-lg">
+<form action="#" class="space-y-6" method="POST">
+<div>
+<label class="block text-base font-medium text-[var(--text-color)] sr-only" for="email">Email Address / Username</label>
+<div class="relative mt-1">
+<span aria-hidden="true" class="material-symbols-outlined absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">person</span>
+<input aria-describedby="email-error" autocomplete="email" class="form-input" id="email" name="email" placeholder="Email Address / Username" required="" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-base font-medium text-[var(--text-color)] sr-only" for="password">Password</label>
+<div class="relative mt-1">
+<span aria-hidden="true" class="material-symbols-outlined absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">lock</span>
+<input autocomplete="current-password" class="form-input error" id="password" name="password" placeholder="Password" required="" type="password"/>
+<button aria-label="Show password" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+<p class="error-message" id="password-error">That password is incorrect. Please try again.</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-slate-300 text-[var(--primary-color)] focus:ring-[var(--primary-color)]" id="remember-me" name="remember-me" type="checkbox"/>
+<label class="ml-2 block text-base text-[var(--text-color)]" for="remember-me">Remember Me</label>
+</div>
+<div class="text-base">
+<a class="font-medium text-[var(--link-color)] hover:underline" href="#">Forgot Password?</a>
+</div>
+</div>
+<div>
+<button class="flex w-full justify-center rounded-md border border-transparent bg-[var(--primary-color)] py-3 px-4 text-base font-semibold text-white shadow-sm hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2 disabled:opacity-50" disabled="" type="submit">Sign In</button>
+<button class="mt-2 flex w-full justify-center rounded-md border border-transparent bg-[var(--primary-color)] py-3 px-4 text-base font-semibold text-white shadow-sm hover:bg-[var(--primary-hover-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-offset-2" type="submit">Sign In</button>
+</div>
+</form>
+<div class="relative my-6">
+<div aria-hidden="true" class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-300"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="bg-white px-2 text-base text-slate-500">OR</span>
+</div>
+</div>
+<div class="space-y-4">
+<a class="flex w-full items-center justify-center rounded-md border border-slate-300 bg-white py-3 px-4 text-base font-medium text-[var(--text-color)] shadow-sm hover:bg-slate-50" href="#">
+<img alt="Google logo" class="h-5 w-5 mr-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDOQaSltTyXjIuJjnIiQQvNWi5BpYU61htIYwRKWuiJeAdZqCX-rcKF1qhhqijTR-qo7kmCHWGS-M0BeP-S4ouZu4K91jJKwCQxp6aTx8DKxTvtZP_nbDokNi600GYQ-UsH3_uhXOa0nunR4Ya4g63Tq3-KVWfJmjJT_zOsxGHiNoSlHPk-KE28VLN0tIPoAGHVT4TkkiHTQoauh6f_LQ0204L2puqOneVSUzXv748pn4uDiUsFle7Pd7rh8HBYUqomTvT3zLdd9_u"/>
+                        Sign in with Google
+                    </a>
+<a class="flex w-full items-center justify-center rounded-md border border-slate-300 bg-white py-3 px-4 text-base font-medium text-[var(--text-color)] shadow-sm hover:bg-slate-50" href="#">
+<img alt="Microsoft logo" class="h-5 w-5 mr-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1G0GMo56fTLcyQpfvvc7JN9UT179BdBKWHRwZW_O3K0K0b6nppkX3gmEOhQOzn7GHJQ-rzjwDP5c-ufkL8ZHthJdLn-m3cfXazS5Wg81y7-JackSTbFOUuN-niPVI2suglUjRJpuUkO5O9PRlSES83u2P46FpKFtOoPcFlqYwzOj-T96ic5dDNP73jFAvg2xUt6yrJJYmzmFu9f7g9Ow17Gq4Kjutfrf54_mlYr_apEv91oy2Ye66vIXe17iTo_bXMLD3QC677ncK"/>
+                        Sign in with Microsoft
+                    </a>
+<a class="flex w-full items-center justify-center rounded-md border border-slate-300 bg-white py-3 px-4 text-base font-medium text-[var(--text-color)] shadow-sm hover:bg-slate-50" href="#">
+<span aria-hidden="true" class="material-symbols-outlined mr-3">school</span>
+                        Sign in with University ID (SSO)
+                    </a>
+</div>
+</div>
+<p class="mt-8 text-center text-base text-slate-600">
+                Don't have an account?
+                <a class="font-medium text-[var(--link-color)] hover:underline" href="#">Sign Up</a>
+</p>
+</div>
+</div>
+
+</body></html>

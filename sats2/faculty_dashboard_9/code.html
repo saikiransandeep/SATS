@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Class Incharge Reports</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #e7f1fc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --background-color: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+        .dark {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --background-color: #0f172a;
+            --border-color: #334155;
+        }
+        .sidebar-link:hover {
+            @apply bg-[var(--secondary-color)]
+            text-[var(--primary-color)] font-semibold;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-primary)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex min-h-screen">
+<aside class="w-64 bg-white dark:bg-slate-900 shadow-md flex-shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">school</span>
+<h1 class="text-[var(--text-primary)] text-xl font-bold">EduTrack</h1>
+</div>
+<p class="text-[var(--text-secondary)] text-sm mt-1">Class Incharge View</p>
+</div>
+<nav class="mt-8 px-4">
+<ul>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span>Attendance</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="absolute bottom-0 w-64 p-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<header class="flex flex-wrap justify-between items-center mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold text-[var(--text-primary)]">Class Reports</h1>
+<p class="text-[var(--text-secondary)] mt-1">Consolidated attendance analytics for your class.</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--secondary-color)] hover:text-[var(--primary-color)] transition-colors">
+<span class="material-symbols-outlined text-base">print</span> Print
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined text-base">download</span> Export Report
+                    </button>
+</div>
+</header>
+<div class="space-y-8">
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Filters</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="date-range">Date Range</label>
+<input class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="date-range" type="date"/>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="student-search">Student Search</label>
+<input class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="student-search" placeholder="Enter name or roll number" type="text"/>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="subject-filter">Subject</label>
+<select class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="subject-filter">
+<option>All Subjects</option>
+<option>Computer Networks</option>
+<option>Data Structures</option>
+<option>Operating Systems</option>
+<option>Database Management</option>
+</select>
+</div>
+<div>
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="status-filter">Status</label>
+<select class="w-full mt-1 text-sm rounded-md border-gray-300 dark:border-slate-600 dark:bg-slate-800 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="status-filter">
+<option>All</option>
+<option>Above 75%</option>
+<option>Below 75%</option>
+</select>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Overall Attendance %</h4>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-green-600">92.1%</p>
+<div class="flex items-center text-sm text-green-500 font-semibold">
+<span class="material-symbols-outlined text-base">trending_up</span>
+<span>0.8%</span>
+</div>
+</div>
+</div>
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Total Students</h4>
+<p class="text-3xl font-bold text-[var(--text-primary)] mt-1">54</p>
+</div>
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Total Classes</h4>
+<p class="text-3xl font-bold text-[var(--text-primary)] mt-1">160</p>
+</div>
+<div class="border-r border-[var(--border-color)] pr-6">
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">On-Duty Requests</h4>
+<p class="text-3xl font-bold text-[var(--text-primary)] mt-1">8</p>
+</div>
+<div>
+<h4 class="text-sm font-medium text-[var(--text-secondary)]">Students Below 75%</h4>
+<div class="flex items-baseline gap-2 mt-1">
+<p class="text-3xl font-bold text-red-500">3</p>
+<div class="flex items-center text-sm text-red-500 font-semibold">
+<span class="material-symbols-outlined text-base">trending_up</span>
+<span>1</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
+<div class="xl:col-span-3 bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Attendance % Per Student</h3>
+<div class="h-96">
+<canvas id="attendancePerStudentChart"></canvas>
+</div>
+</div>
+<div class="xl:col-span-2 bg-white dark:bg-slate-900 rounded-xl shadow-sm p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Attendance by Subject</h3>
+<div class="h-96">
+<canvas id="attendanceBySubjectChart"></canvas>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden">
+<div class="p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)]">Student List - Consolidated</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-[var(--text-secondary)]">
+<thead class="text-xs text-[var(--text-secondary)] uppercase bg-gray-50 dark:bg-slate-800">
+<tr>
+<th class="px-6 py-4" scope="col">Student Name</th>
+<th class="px-6 py-4" scope="col">Roll Number</th>
+<th class="px-6 py-4 text-center" scope="col">Total Attended</th>
+<th class="px-6 py-4 text-center" scope="col">Total Classes</th>
+<th class="px-6 py-4 text-center" scope="col">On-Duty</th>
+<th class="px-6 py-4" scope="col" style="min-width: 200px;">Attendance %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Alice Johnson</td>
+<td class="px-6 py-5">CSE2001</td>
+<td class="px-6 py-5 text-center font-medium">150</td>
+<td class="px-6 py-5 text-center font-medium">160</td>
+<td class="px-6 py-5 text-center font-medium">2</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 93.75%"></div>
+</div>
+<span class="font-semibold text-green-500 w-12 text-right">93.8%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Bob Williams</td>
+<td class="px-6 py-5">CSE2002</td>
+<td class="px-6 py-5 text-center font-medium">140</td>
+<td class="px-6 py-5 text-center font-medium">160</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-yellow-500 h-2.5 rounded-full" style="width: 87.5%"></div>
+</div>
+<span class="font-semibold text-yellow-500 w-12 text-right">87.5%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Charlie Brown</td>
+<td class="px-6 py-5">CSE2003</td>
+<td class="px-6 py-5 text-center font-medium">158</td>
+<td class="px-6 py-5 text-center font-medium">160</td>
+<td class="px-6 py-5 text-center font-medium">5</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-green-500 h-2.5 rounded-full" style="width: 98.75%"></div>
+</div>
+<span class="font-semibold text-green-500 w-12 text-right">98.8%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Diana Miller</td>
+<td class="px-6 py-5">CSE2004</td>
+<td class="px-6 py-5 text-center font-medium">118</td>
+<td class="px-6 py-5 text-center font-medium">160</td>
+<td class="px-6 py-5 text-center font-medium">1</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-red-500 h-2.5 rounded-full" style="width: 73.75%"></div>
+</div>
+<span class="font-semibold text-red-500 w-12 text-right">73.8%</span>
+</div>
+</td>
+</tr>
+<tr class="bg-white dark:bg-slate-900 border-t dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800">
+<td class="px-6 py-5 font-medium text-[var(--text-primary)] whitespace-nowrap">Ethan Davis</td>
+<td class="px-6 py-5">CSE2005</td>
+<td class="px-6 py-5 text-center font-medium">125</td>
+<td class="px-6 py-5 text-center font-medium">160</td>
+<td class="px-6 py-5 text-center font-medium">0</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+<div class="bg-yellow-500 h-2.5 rounded-full" style="width: 78.1%"></div>
+</div>
+<span class="font-semibold text-yellow-500 w-12 text-right">78.1%</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const getColors = () => ({
+                green: 'rgb(34, 197, 94)',
+                red: 'rgb(239, 68, 68)',
+                yellow: 'rgb(234, 179, 8)',
+                blue: 'rgb(59, 130, 246)',
+                purple: 'rgb(139, 92, 246)',
+                teal: 'rgb(20, 184, 166)',
+                textPrimary: document.body.classList.contains('dark') ? '#f8fafc' : '#1a202c',
+                gridColor: document.body.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+            });
+            const colors = getColors();
+            // Attendance % Per Student Chart - Horizontal Bar
+            const studentCtx = document.getElementById('attendancePerStudentChart').getContext('2d');
+            new Chart(studentCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Alice J.', 'Bob W.', 'Charlie B.', 'Diana M.', 'Ethan D.', 'Fiona G.', 'George H.'],
+                    datasets: [{
+                        label: 'Attendance %',
+                        data: [93.8, 87.5, 98.8, 73.8, 78.1, 71.2, 95.0],
+                        backgroundColor: (context) => {
+                            const value = context.raw;
+                            if (value < 75) return colors.red;
+                            if (value < 90) return colors.yellow;
+                            return colors.green;
+                        },
+                        borderColor: 'transparent',
+                        borderRadius: 4,
+                        barThickness: 12,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: colors.textPrimary,
+                                font: {
+                                    family: 'Manrope'
+                                }
+                            },
+                            grid: {
+                                color: colors.gridColor
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                color: colors.textPrimary,
+                                font: {
+                                    family: 'Manrope'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.dataset.label}: ${context.formattedValue}%`
+                            }
+                        }
+                    }
+                }
+            });
+            // Attendance by Subject Chart - Vertical Bar
+            const subjectCtx = document.getElementById('attendanceBySubjectChart').getContext('2d');
+            new Chart(subjectCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Comp. Networks', 'Data Struct.', 'OS', 'DBMS', 'Software Engg.'],
+                    datasets: [{
+                        label: 'Avg. Attendance %',
+                        data: [95, 88, 92, 91, 85],
+                        backgroundColor: [colors.blue, colors.green, colors.purple, colors.teal, colors.yellow],
+                        borderRadius: 4,
+                        barThickness: 20,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                color: colors.textPrimary,
+                                font: {
+                                    family: 'Manrope'
+                                }
+                            },
+                            grid: {
+                                color: colors.gridColor
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: colors.textPrimary,
+                                font: {
+                                    family: 'Manrope'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.dataset.label}: ${context.formattedValue}%`
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+</body></html>

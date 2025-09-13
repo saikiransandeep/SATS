@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Attendance</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #e7f1fc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --background-color: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+        .status-toggle {
+            @apply flex items-center justify-center space-x-1 p-0.5 rounded-full bg-gray-200 transition-all duration-300;
+        }
+        .status-toggle button {
+            @apply w-8 h-8 rounded-full text-sm font-semibold flex items-center justify-center transition-all duration-300;
+            @apply focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-75;
+        }
+        .status-toggle .present-btn {
+            @apply text-gray-500;
+        }
+        .status-toggle .absent-btn {
+            @apply text-gray-500;
+        }
+        .status-toggle .od-btn {
+            @apply text-gray-500;
+        }
+        .status-toggle.present .present-btn {
+            @apply bg-green-500 text-white;
+        }
+        .status-toggle.absent .absent-btn {
+            @apply bg-red-500 text-white;
+        }
+        .status-toggle.od .od-btn {
+            @apply bg-yellow-500 text-white;
+        }
+        .group:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .sidebar-link:hover {
+            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold;
+        }
+        .profile-drawer {
+            @apply fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50;
+        }
+        .profile-drawer.open {
+            @apply translate-x-0;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex min-h-screen">
+<aside class="w-64 bg-white shadow-md flex-shrink-0 hidden lg:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">school</span>
+<h1 class="text-[var(--text-primary)] text-xl font-bold">EduTrack</h1>
+</div>
+</div>
+<nav class="mt-8 px-4 flex-1">
+<ul>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span>Attendance</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="p-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-4 sm:p-8">
+<header class="flex justify-between items-center mb-6">
+<div>
+<h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Attendance</h1>
+<nav aria-label="Breadcrumb" class="mt-2 text-sm text-[var(--text-secondary)]">
+<ol class="list-none p-0 inline-flex">
+<li class="flex items-center">
+<a class="hover:text-[var(--primary-color)]" href="#">CSE B</a>
+</li>
+<li class="flex items-center mx-2">»</li>
+<li class="flex items-center">
+<a class="hover:text-[var(--primary-color)]" href="#">3rd Year</a>
+</li>
+<li class="flex items-center mx-2">»</li>
+<li class="text-[var(--text-primary)] font-medium">CSE-B</li>
+</ol>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="View notifications" class="relative">
+<span class="material-symbols-outlined text-2xl text-[var(--text-secondary)]">notifications</span>
+<span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full shadow-sm">
+<img alt="Dr. Alan Grant" class="h-8 w-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw2ODilqn1aOwQDfGMe7oSUnc--1HcBJfo0_-tqXXwpzGkAKxqCKd5s1mbrTHxl412iM9EXNIvnzTa95qbnMP7M7xVQuMXsD-MF3-PnhuNkmN_6CZsysmZqgpbTCncI7U7GgKIHiHbwmWLXTxPuNHyKw2OSVXyZbfq32nyhxlpGhdX_FSG3DQyccsr-MlPd59Y-LRe1F505UkL4lEzRcrd3lHrH0CDr_K1oRfN_mX1G5xnSkb6HQQmO7J4k8VB9sQUeKnLfjGQBII0"/>
+<div class="text-sm font-semibold text-[var(--text-primary)]">
+<span class="hidden sm:inline">Dr. Alan Grant – </span>Faculty
+                        </div>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-6">
+<div class="bg-white rounded-lg shadow-sm">
+<div class="p-4 border-b border-[var(--border-color)]">
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[200px]">
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="class-filter">Class/Section</label>
+<select aria-label="Select Class and Section" class="w-full mt-1 text-sm rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" id="class-filter">
+<option>CSE-B</option>
+<option>IT-A</option>
+<option>CSE-A</option>
+</select>
+</div>
+<div class="flex-1 min-w-[150px]">
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="date-picker">Date</label>
+<input aria-label="Select Date" class="w-full mt-1 text-sm rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50 disabled:bg-gray-100 disabled:cursor-not-allowed" disabled="" id="date-picker" type="date" value="2023-10-27"/>
+</div>
+<div class="flex items-end h-full">
+<div class="flex items-center gap-2 p-2 rounded-lg bg-red-100 text-red-700 opacity-75 cursor-not-allowed">
+<span class="material-symbols-outlined">timer_off</span>
+<span class="font-mono text-sm font-semibold">00:00:00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-b border-[var(--border-color)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 opacity-50 pointer-events-none">
+<div class="relative w-full sm:w-1/2">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input aria-label="Search Students" class="w-full pl-10 pr-4 py-2 text-sm rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" disabled="" placeholder="Search by name or roll number..." type="text"/>
+</div>
+<div class="flex items-center space-x-2">
+<label class="text-sm font-medium text-[var(--text-secondary)]" for="filter-status">Filter:</label>
+<select aria-label="Filter students by status" class="text-sm rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50" disabled="" id="filter-status">
+<option>All</option>
+<option>Unmarked</option>
+<option>Present</option>
+<option>Absent</option>
+<option>OD</option>
+</select>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 z-10 flex items-center justify-center bg-gray-200 bg-opacity-75 backdrop-blur-sm" id="marking-closed-overlay">
+<div class="bg-white p-8 rounded-lg shadow-xl text-center max-w-sm">
+<span class="material-symbols-outlined text-6xl text-[var(--text-primary)] mb-4">lock</span>
+<h2 class="text-2xl font-bold text-[var(--text-primary)] mb-2">Attendance Marking Closed</h2>
+<p class="text-base text-[var(--text-secondary)]">This session has ended and attendance can no longer be modified.</p>
+</div>
+</div>
+<div class="overflow-x-auto table-container opacity-40 pointer-events-none">
+<table class="w-full text-sm text-left text-[var(--text-secondary)]">
+<thead class="text-xs text-[var(--text-secondary)] uppercase bg-gray-50">
+<tr>
+<th class="px-6 py-3" scope="col">Avatar</th>
+<th class="px-6 py-3" scope="col">Student Name</th>
+<th class="px-6 py-3" scope="col">Roll Number</th>
+<th class="px-6 py-3 text-center" scope="col">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white border-b">
+<td class="px-6 py-4"><img alt="Alice Johnson" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMGOqvpe10BzH066vIjjfJoSrRPAVn7E2XOI4pQOVZ-fw458g8pc_HGqLAC1JatJN4emaSocfkXI3vWOoJyVoFahBRh8SDWZjXp-Cf6OaXg89IepAwV93YTZTJJds6zaWckiqMf_EMDuJR_ORTAZSSp0UsKGjy7p0qI1Q34NNRmFr8ySw3xAmGI3DdoT7elnAyJF7QqKjwmNuds1V3cTj9xYLfMnOQtiuDPqh00_X9HVOUXZFv0GhNn0Z6m8_xlDFI5wyMD37I5Jon"/></td>
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap"><button aria-label="View profile for Alice Johnson" class="text-left" disabled="">Alice Johnson</button></td>
+<td class="px-6 py-4">CSE2001</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<div aria-label="Attendance status for Alice Johnson" class="status-toggle present" role="radiogroup">
+<button aria-checked="true" aria-label="Present" class="present-btn" role="radio" type="button">P</button>
+<button aria-checked="false" aria-label="Absent" class="absent-btn" role="radio" type="button">A</button>
+<button aria-checked="false" aria-label="On Duty" class="od-btn" role="radio" type="button">OD</button>
+</div>
+</div>
+</td>
+</tr>
+<tr class="bg-white border-b">
+<td class="px-6 py-4"><img alt="Bob Williams" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8UwI5sEGgxreZngY3_hwnBAaDB8CByHCFLVkqZ79SQyRTLvdMRmBn7eazCqRkLBugtOmhXQ0sou-UeGLX8U5sQz5KMv9wtl3l0G5EA7YxRgHABclDV5KaajXINQqBzN9Zj6NF7BMUYaHiLBYgJ3Xa1HgLlX1oWYQv3AcEVt5lMlOca7b_9LlFXREVba0dwaIZNqvHurYpZwqZBj3j49lWU5gl-lPoHcptDxbA9GryqYIbkLkx9TBcRaV4eJ737wTlSOBnechtJPSz"/></td>
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap"><button aria-label="View profile for Bob Williams" class="text-left" disabled="">Bob Williams</button></td>
+<td class="px-6 py-4">CSE2002</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<div aria-label="Attendance status for Bob Williams" class="status-toggle absent" role="radiogroup">
+<button aria-checked="false" aria-label="Present" class="present-btn" role="radio" type="button">P</button>
+<button aria-checked="true" aria-label="Absent" class="absent-btn" role="radio" type="button">A</button>
+<button aria-checked="false" aria-label="On Duty" class="od-btn" role="radio" type="button">OD</button>
+</div>
+</div>
+</td>
+</tr>
+<tr class="bg-white border-b">
+<td class="px-6 py-4"><img alt="Charlie Brown" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu-7aORUOQ9Bt1jgKU5c3hMab7cHWvP7lSn0nUdn4HqFmeGk5Ex8TDcUVri7hQ00lwZFYvjgqwQBkZS56rK6LosjRYK67EJmDKVrxlyQWOuUkrUdF61Vg4YhdEWY9GR5BheH_Lg6nuVKSlBsv0y_6Ko9YWAMQqPO8XjItlOhbSBaohgIWoFGNW262jxIyCtRgLsydlELcbIaGPZ_ZOGlILpdS7laDxBaO7hgWGml6cWwOuIOKenKNAzUfUv9a4MfbMyW8O_xaDD0TS"/></td>
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap"><button aria-label="View profile for Charlie Brown" class="text-left" disabled="">Charlie Brown</button></td>
+<td class="px-6 py-4">CSE2003</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<div aria-label="Attendance status for Charlie Brown" class="status-toggle present" role="radiogroup">
+<button aria-checked="true" aria-label="Present" class="present-btn" role="radio" type="button">P</button>
+<button aria-checked="false" aria-label="Absent" class="absent-btn" role="radio" type="button">A</button>
+<button aria-checked="false" aria-label="On Duty" class="od-btn" role="radio" type="button">OD</button>
+</div>
+</div>
+</td>
+</tr>
+<tr class="bg-white border-b">
+<td class="px-6 py-4"><img alt="Diana Miller" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAafzqJEzsCfM1XuOjbFj1QErBha21TE_DTvHri5zqXRX4izOTnKrIDNa7DbhR87DSiLu375MaxVfzZFNv6Cnmb5kYw8LO_bgNTo06NHL1eZZaoS55kXyQ4W9mKgdvtm1OZo85Z-Rpol6T-xtl5qsvVIj4AQ7-sh-dHhC_FH1nyovsCrgUYXX-6SYEmU4vUqmezq0I8IV-2y8GlBWxSsuZsQb0-t5jhABTWamwzqWR7zKzyqn7h90RK0vEjTlQE6eKWUo7Jc8xZOn7U"/></td>
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap"><button aria-label="View profile for Diana Miller" class="text-left" disabled="">Diana Miller</button></td>
+<td class="px-6 py-4">CSE2004</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<div aria-label="Attendance status for Diana Miller" class="status-toggle od" role="radiogroup">
+<button aria-checked="false" aria-label="Present" class="present-btn" role="radio" type="button">P</button>
+<button aria-checked="false" aria-label="Absent" class="absent-btn" role="radio" type="button">A</button>
+<button aria-checked="true" aria-label="On Duty" class="od-btn" role="radio" type="button">OD</button>
+</div>
+</div>
+</td>
+</tr>
+<tr class="bg-white">
+<td class="px-6 py-4"><img alt="Ethan Davis" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF6OISx5xsjtVtNeQXX3NzLSpkMp7HuXfwyiSyxS7g1KJH_XltdY42S6Lo1GvXVSuopSg0V-LGzY28qDCd-SXwgPeQ8cCDpaMwUP_XTUrOpFhsKWZ3-fxT0F_gIZct2ihjGy9ecTWm6WAxxK0vRslQtX2t3lC_9cu60yhe_GIK3cLyXTtO86BbJ_9C5kRAWO8DXnGPpJHwDl57IcKcp7Hfk2oVL1VQd8icPx0Z6-kLyqexxN-g9-rRDp09ihF4Q37CUYPnK3Xoxd4R"/></td>
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap"><button aria-label="View profile for Ethan Davis" class="text-left" disabled="">Ethan Davis</button></td>
+<td class="px-6 py-4">CSE2005</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<div aria-label="Attendance status for Ethan Davis" class="status-toggle" role="radiogroup">
+<button aria-checked="false" aria-label="Present" class="present-btn" role="radio" type="button">P</button>
+<button aria-checked="false" aria-label="Absent" class="absent-btn" role="radio" type="button">A</button>
+<button aria-checked="false" aria-label="On Duty" class="od-btn" role="radio" type="button">OD</button>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="p-4 flex justify-between items-center opacity-50 pointer-events-none">
+<span class="text-sm text-[var(--text-secondary)]">Showing 1 to 5 of 45 students</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-sm font-medium rounded-md text-[var(--text-secondary)] hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled="">« Previous</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-md text-[var(--text-secondary)] hover:bg-gray-100 transition-colors" disabled="">Next »</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<button class="px-6 py-3 flex items-center gap-2 font-semibold rounded-md bg-gray-300 text-gray-500 cursor-not-allowed" disabled="" id="submit-attendance-btn">
+<span class="material-symbols-outlined">save</span> Submit Attendance
+                        </button>
+<p class="text-xs text-gray-500 mt-2">Last saved at 10:35 AM</p>
+</div>
+</div>
+<div class="lg:col-span-1 space-y-6 lg:block">
+<div class="bg-white rounded-lg shadow-sm p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Attendance Summary</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-[var(--text-secondary)] font-medium">Total Students</span>
+<span class="font-bold text-[var(--text-primary)]">45</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-green-600 font-medium">Present</span>
+<span class="font-bold text-green-600">40</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-red-600 font-medium">Absent</span>
+<span class="font-bold text-red-600">3</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-yellow-500 font-medium">On Duty (OD)</span>
+<span class="font-bold text-yellow-500">1</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-gray-500 font-medium">Unmarked</span>
+<span class="font-bold text-gray-500">1</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+<div class="bg-green-500 h-2.5 rounded-l-full" style="width: 88.9%"></div>
+<div class="bg-red-500 h-2.5" style="width: 6.7%; margin-left: 88.9%;"></div>
+<div class="bg-yellow-500 h-2.5" style="width: 2.2%; margin-left: 95.6%;"></div>
+</div>
+<div class="text-right font-bold text-[var(--text-primary)] text-lg">89% Present</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Actions</h3>
+<div class="space-y-3">
+<button class="w-full px-4 py-2 flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-gray-200 text-gray-500 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-base">check_circle</span> Mark All Present
+                            </button>
+<button class="w-full px-4 py-2 flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-gray-200 text-gray-500 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-base">cancel</span> Mark All Absent
+                            </button>
+<div class="relative w-full">
+<button class="w-full px-4 py-2 flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-gray-100 text-[var(--text-secondary)] hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<span class="material-symbols-outlined text-base">download</span>
+                                    Export Data
+                                    <span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<div class="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg hidden">
+<a class="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-gray-100" href="#">Export CSV</a>
+<a class="block px-4 py-2 text-sm text-[var(--text-secondary)] hover:bg-gray-100" href="#">Export PDF</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<div class="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-40 lg:hidden" id="summary-drawer">
+<div class="p-6">
+<button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" id="close-summary-drawer">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Attendance Summary</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-[var(--text-secondary)] font-medium">Total Students</span>
+<span class="font-bold text-[var(--text-primary)]">45</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-green-600 font-medium">Present</span>
+<span class="font-bold text-green-600">40</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-red-600 font-medium">Absent</span>
+<span class="font-bold text-red-600">3</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-yellow-500 font-medium">On Duty (OD)</span>
+<span class="font-bold text-yellow-500">1</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-gray-500 font-medium">Unmarked</span>
+<span class="font-bold text-gray-500">1</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+<div class="bg-green-500 h-2.5 rounded-l-full" style="width: 88.9%"></div>
+<div class="bg-red-500 h-2.5" style="width: 6.7%; margin-left: 88.9%;"></div>
+<div class="bg-yellow-500 h-2.5" style="width: 2.2%; margin-left: 95.6%;"></div>
+</div>
+<div class="text-right font-bold text-[var(--text-primary)] text-lg">89% Present</div>
+</div>
+</div>
+</div>
+<button class="lg:hidden fixed bottom-4 right-4 bg-[var(--primary-color)] text-white p-3 rounded-full shadow-lg z-30" id="open-summary-drawer">
+<span class="material-symbols-outlined">summarize</span>
+</button>
+<div class="profile-drawer" id="profile-drawer">
+<div class="p-6 relative">
+<button aria-label="Close profile" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" id="close-profile-drawer">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="flex flex-col items-center mt-8">
+<img alt="Alice Johnson" class="h-24 w-24 rounded-full object-cover ring-4 ring-[var(--primary-color)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwYPHF4bPNPjWG7mjwttWqpNXSy6A0vxjsh9O8I5qwRZjknTd3X-ULZ-_Gs3aclSDEgQ2vbvQTYeOQYUznqkj2sgzIc-yfgCr2mU-hn8PpRcGlAK3ks0v6z7rED3D7dns8EBtFUBY0xQw2_LzUNlaIWYaZPbsqI0GLb0Y2XbgkMike46TJdxPGsKbULF5CjLizirV2IK-XRlgYWv2TqmCcrHHCV7-_CB0ADVjmSQ1buOzuuojSnh7pKvUoTLotK8jHZKuaBTIdaPVf"/>
+<h2 class="text-2xl font-bold text-[var(--text-primary)] mt-4">Alice Johnson</h2>
+<p class="text-[var(--text-secondary)]">CSE2001</p>
+</div>
+<div class="mt-8 border-t border-gray-200 pt-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Student Information</h3>
+<dl class="space-y-4">
+<div class="flex justify-between">
+<dt class="font-medium text-[var(--text-secondary)]">Email</dt>
+<dd class="text-[var(--text-primary)]">alice.j@university.edu</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-medium text-[var(--text-secondary)]">Phone</dt>
+<dd class="text-[var(--text-primary)]">+1 234 567 890</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-medium text-[var(--text-secondary)]">Batch</dt>
+<dd class="text-[var(--text-primary)]">2020-2024</dd>
+</div>
+<div class="flex justify-between">
+<dt class="font-medium text-[var(--text-secondary)]">Advisor</dt>
+<dd class="text-[var(--text-primary)]">Dr. Evelyn Reed</dd>
+</div>
+</dl>
+</div>
+</div>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileDrawer = document.getElementById('profile-drawer');
+            const closeProfileDrawerBtn = document.getElementById('close-profile-drawer');
+            const studentNameButtons = document.querySelectorAll('button[aria-label^="View profile for"]');
+            function toggleProfileDrawer(open) {
+                if (open) {
+                    profileDrawer.classList.add('open');
+                } else {
+                    profileDrawer.classList.remove('open');
+                }
+            }
+            studentNameButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if(!btn.disabled) {
+                       toggleProfileDrawer(true)
+                    }
+                });
+            });
+            closeProfileDrawerBtn.addEventListener('click', () => toggleProfileDrawer(false));
+            const summaryDrawer = document.getElementById('summary-drawer');
+            const openSummaryDrawerBtn = document.getElementById('open-summary-drawer');
+            const closeSummaryDrawerBtn = document.getElementById('close-summary-drawer');
+            openSummaryDrawerBtn.addEventListener('click', () => summaryDrawer.classList.remove('translate-x-full'));
+            closeSummaryDrawerBtn.addEventListener('click', () => summaryDrawer.classList.add('translate-x-full'));
+        });
+    </script>
+</body></html>

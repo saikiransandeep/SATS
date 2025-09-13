@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Settings</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #e7f1fc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --background-color: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked+.slider {
+            background-color: var(--primary-color);
+        }
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+        @media (max-width: 767px) {
+            .tabs-as-accordion .tab-content {
+                display: none;
+            }
+            .tabs-as-accordion .tab-button.active+.tab-content {
+                display: block;
+            }
+        }
+    </style>
+<script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-[var(--background-color)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex min-h-screen">
+<aside class="w-64 bg-white shadow-md flex-shrink-0 hidden md:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">school</span>
+<h1 class="text-[var(--text-primary)] text-xl font-bold">EduTrack</h1>
+</div>
+<p class="text-[var(--text-secondary)] text-sm mt-1">Smart Attendance</p>
+</div>
+<nav class="mt-8 px-4 flex-grow">
+<ul>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span>Attendance</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="p-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-4 sm:p-8">
+<header class="flex justify-between items-center mb-8">
+<div>
+<nav aria-label="Breadcrumb" class="text-sm font-medium text-gray-500 mb-2">
+<ol class="list-none p-0 inline-flex">
+<li class="flex items-center">
+<a class="hover:text-[var(--primary-color)]" href="#">CSE B</a>
+<span class="material-symbols-outlined mx-1 text-sm">chevron_right</span>
+</li>
+<li class="flex items-center">
+<a class="hover:text-[var(--primary-color)]" href="#">3rd Year</a>
+<span class="material-symbols-outlined mx-1 text-sm">chevron_right</span>
+</li>
+<li class="text-[var(--text-primary)]">CSE-B</li>
+</ol>
+</nav>
+<h1 class="text-3xl font-bold text-[var(--text-primary)]">Settings</h1>
+<p class="text-[var(--text-secondary)] mt-1">Manage your account and preferences</p>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="View notifications" class="relative">
+<span class="material-symbols-outlined text-2xl text-[var(--text-secondary)]">notifications</span>
+<span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="flex items-center gap-2">
+<img alt="Professor Davis" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw2ODilqn1aOwQDfGMe7oSUnc--1HcBJfo0_-tqXXwpzGkAKxqCKd5s1mbrTHxl412iM9EXNIvnzTa95qbnMP7M7xVQuMXsD-MF3-PnhuNkmN_6CZsysmZqgpbTCncI7U7GgKIHiHbwmWLXTxPuNHyKw2OSVXyZbfq32nyhxlpGhdX_FSG3DQyccsr-MlPd59Y-LRe1F505UkL4lEzRcrd3lHrH0CDr_K1oRfN_mX1G5xnSkb6HQQmO7J4k8VB9sQUeKnLfjGQBII0"/>
+<div class="hidden sm:block">
+<p class="text-sm font-semibold text-[var(--text-primary)]">Faculty: Professor Davis</p>
+<span class="inline-block text-xs font-medium bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">RoleBadge</span>
+</div>
+</div>
+</div>
+</header>
+<div class="tabs-as-accordion" x-data="{ activeTab: 'profile', loading: false, lastSavedAt: null, users: { two_factor_enabled: false }, formErrors: {} }">
+<div class="mb-6 border-b border-[var(--border-color)] md:block hidden">
+<nav aria-label="Tabs" class="-mb-px flex space-x-6">
+<button :aria-selected="activeTab === 'profile'" :class="{ 'border-[var(--primary-color)] text-[var(--primary-color)] font-semibold': activeTab === 'profile', 'border-transparent text-[var(--text-secondary)] hover:text-gray-700 hover:border-gray-300': activeTab !== 'profile' }" @click="activeTab = 'profile'" aria-controls="profile-panel" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-xl">person</span> Profile
+                        </button>
+<button :aria-selected="activeTab === 'notifications'" :class="{ 'border-[var(--primary-color)] text-[var(--primary-color)] font-semibold': activeTab === 'notifications', 'border-transparent text-[var(--text-secondary)] hover:text-gray-700 hover:border-gray-300': activeTab !== 'notifications' }" @click="activeTab = 'notifications'" aria-controls="notifications-panel" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-xl">notifications</span> Notifications
+                        </button>
+<button :aria-selected="activeTab === 'assignments'" :class="{ 'border-[var(--primary-color)] text-[var(--primary-color)] font-semibold': activeTab === 'assignments', 'border-transparent text-[var(--text-secondary)] hover:text-gray-700 hover:border-gray-300': activeTab !== 'assignments' }" @click="activeTab = 'assignments'" aria-controls="assignments-panel" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-xl">assignment_ind</span> Class Assignments
+                        </button>
+<button :aria-selected="activeTab === 'preferences'" :class="{ 'border-[var(--primary-color)] text-[var(--primary-color)] font-semibold': activeTab === 'preferences', 'border-transparent text-[var(--text-secondary)] hover:text-gray-700 hover:border-gray-300': activeTab !== 'preferences' }" @click="activeTab = 'preferences'" aria-controls="preferences-panel" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-xl">tune</span> Preferences
+                        </button>
+</nav>
+</div>
+<div class="md:hidden">
+<button :class="{'bg-[var(--secondary-color)]': activeTab === 'profile'}" @click="activeTab = activeTab === 'profile' ? null : 'profile'" class="tab-button w-full text-left p-4 border-b font-semibold flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)]">Profile <span class="material-symbols-outlined" x-text="activeTab === 'profile' ? 'expand_less' : 'expand_more'"></span></button>
+</div>
+<div class="tab-content md:block" id="profile-panel" x-show="activeTab === 'profile'">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white rounded-lg shadow-sm p-6 border border-[var(--border-color)]">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-6">Profile Information</h3>
+<form @submit.prevent="loading = true; setTimeout(() =&gt; { loading = false; lastSavedAt = new Date().toLocaleString() }, 1000)" class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="name">Full Name</label>
+<input aria-label="Full Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="name" type="text" value="Professor Davis"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="email">Email Address</label>
+<input aria-label="Email Address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="email" type="email" value="p.davis@university.edu"/>
+</div>
+</form>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-6 border border-[var(--border-color)]">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-6">Change Password</h3>
+<form @submit.prevent="loading = true; setTimeout(() =&gt; { loading = false; lastSavedAt = new Date().toLocaleString(); formErrors = {} }, 1000)" class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="old_password">Old Password</label>
+<input aria-label="Old Password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="old_password" placeholder="••••••••" type="password"/>
+<p class="text-red-500 text-xs mt-1" x-text="formErrors.old_password"></p>
+</div>
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="new_password">New Password</label>
+<input aria-label="New Password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="new_password" placeholder="••••••••" type="password"/>
+<p class="text-red-500 text-xs mt-1" x-text="formErrors.new_password"></p>
+</div>
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="confirm_password">Confirm New Password</label>
+<input aria-label="Confirm New Password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="confirm_password" placeholder="••••••••" type="password"/>
+<p class="text-red-500 text-xs mt-1" x-text="formErrors.confirm_password"></p>
+</div>
+<div class="flex justify-end items-center gap-4">
+<span class="animate-spin rounded-full h-5 w-5 border-b-2 border-[var(--primary-color)]" x-show="loading"></span>
+<span class="text-sm text-gray-500" x-show="lastSavedAt">Last saved at <span x-text="lastSavedAt"></span></span>
+<button :disabled="loading" class="px-6 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="submit">
+                                            Update Password
+                                        </button>
+</div>
+</form>
+</div>
+</div>
+<div class="lg:col-span-1">
+<div class="bg-white rounded-lg shadow-sm p-6 border border-[var(--border-color)] text-center">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-4">Profile Photo</h3>
+<img alt="Professor Davis" class="h-32 w-32 rounded-full object-cover mx-auto mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw2ODilqn1aOwQDfGMe7oSUnc--1HcBJfo0_-tqXXwpzGkAKxqCKd5s1mbrTHxl412iM9EXNIvnzTa95qbnMP7M7xVQuMXsD-MF3-PnhuNkmN_6CZsysmZqgpbTCncI7U7GgKIHiHbwmWLXTxPuNHyKw2OSVXyZbfq32nyhxlpGhdX_FSG3DQyccsr-MlPd59Y-LRe1F505UkL4lEzRcrd3lHrH0CDr_K1oRfN_mX1G5xnSkb6HQQmO7J4k8VB9sQUeKnLfjGQBII0"/>
+<button aria-label="Upload new profile photo" class="w-full px-4 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] hover:bg-blue-200 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-base">upload</span> Upload New Photo
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<div class="md:hidden">
+<button :class="{'bg-[var(--secondary-color)]': activeTab === 'notifications'}" @click="activeTab = activeTab === 'notifications' ? null : 'notifications'" class="tab-button w-full text-left p-4 border-b font-semibold flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)]">Notifications <span class="material-symbols-outlined" x-text="activeTab === 'notifications' ? 'expand_less' : 'expand_more'"></span></button>
+</div>
+<div class="tab-content md:block" id="notifications-panel" x-show="activeTab === 'notifications'">
+<div class="bg-white rounded-lg shadow-sm p-6 border border-[var(--border-color)]">
+<form @submit.prevent="loading = true; setTimeout(() =&gt; { loading = false; lastSavedAt = new Date().toLocaleString() }, 1000)">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-6">Notification Settings</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 rounded-md bg-gray-50 border">
+<div>
+<p class="font-medium text-[var(--text-primary)]">OD Approvals</p>
+<p class="text-sm text-[var(--text-secondary)]">Receive email/SMS alerts for On-Duty leave requests.</p>
+</div>
+<label aria-label="Toggle OD approvals notifications" class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-md bg-gray-50 border">
+<div>
+<p class="font-medium text-[var(--text-primary)]">Low-Attendance Warnings</p>
+<p class="text-sm text-[var(--text-secondary)]">Get alerts when a student's attendance drops below the threshold.</p>
+</div>
+<label aria-label="Toggle low attendance warnings notifications" class="switch">
+<input checked="" type="checkbox"/>
+<span class="slider"></span>
+</label>
+</div>
+</div>
+<div class="flex justify-end items-center gap-4 mt-8">
+<span class="animate-spin rounded-full h-5 w-5 border-b-2 border-[var(--primary-color)]" x-show="loading"></span>
+<span class="text-sm text-gray-500" x-show="lastSavedAt">Last saved at <span x-text="lastSavedAt"></span></span>
+<button :disabled="loading" class="px-6 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="submit">Save Changes</button>
+</div>
+</form>
+</div>
+</div>
+<div class="md:hidden">
+<button :class="{'bg-[var(--secondary-color)]': activeTab === 'assignments'}" @click="activeTab = activeTab === 'assignments' ? null : 'assignments'" class="tab-button w-full text-left p-4 border-b font-semibold flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)]">Class Assignments <span class="material-symbols-outlined" x-text="activeTab === 'assignments' ? 'expand_less' : 'expand_more'"></span></button>
+</div>
+<div class="tab-content md:block" id="assignments-panel" x-data="{ assignments: [ {id: 1, name: 'Data Structures', section: 'CSE-B', students: 45}, {id: 2, name: 'Operating Systems', section: 'IT-A', students: 50}, {id: 3, name: 'Intro to Programming', section: 'CSE-A', students: 60} ], showModal: false, removeAssignment(id) { this.assignments = this.assignments.filter(a =&gt; a.id !== id) } }" x-show="activeTab === 'assignments'">
+<div class="bg-white rounded-lg shadow-sm p-6 border border-[var(--border-color)]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-semibold text-[var(--text-primary)]">Current Assignments</h3>
+<button @click="showModal = true" aria-label="Add new assignment" class="px-4 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]">
+<span class="material-symbols-outlined text-base">add</span> Add Assignment
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<template :key="assignment.id" x-for="assignment in assignments">
+</template><table class="w-full text-left">
+<thead class="bg-gray-50">
+<tr>
+<th class="p-3 text-sm font-semibold text-gray-600">Class Name</th>
+<th class="p-3 text-sm font-semibold text-gray-600">Section</th>
+<th class="p-3 text-sm font-semibold text-gray-600 text-center">Students</th>
+<th class="p-3 text-sm font-semibold text-gray-600 text-right">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b">
+<td class="p-3 text-[var(--text-primary)]" x-text="assignment.name"></td>
+<td class="p-3 text-[var(--text-secondary)]" x-text="assignment.section"></td>
+<td class="p-3 text-[var(--text-secondary)] text-center" x-text="assignment.students"></td>
+<td class="p-3 text-right">
+<button @click="removeAssignment(assignment.id)" aria-label="Remove assignment" class="text-red-500 hover:text-red-700 p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+<div @click.away="showModal = false" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" style="display: none;" x-show="showModal">
+<div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+<h3 class="text-lg font-semibold mb-4">Add New Assignment</h3>
+<form class="space-y-4">
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="new-class-name">Class Name</label>
+<input aria-label="New Class Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="new-class-name" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-[var(--text-secondary)]" for="new-section">Section</label>
+<input aria-label="New Section" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="new-section" type="text"/>
+</div>
+<div class="flex justify-end gap-4 pt-4">
+<button @click="showModal = false" class="px-4 py-2 text-sm font-semibold rounded-md border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" type="button">Cancel</button>
+<button @click.prevent="showModal = false" class="px-4 py-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="submit">Add</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="md:hidden">
+<button :class="{'bg-[var(--secondary-color)]': activeTab === 'preferences'}" @click="activeTab = activeTab === 'preferences' ? null : 'preferences'" class="tab-button w-full text-left p-4 border-b font-semibold flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)]">Preferences <span class="material-symbols-outlined" x-text="activeTab === 'preferences' ? 'expand_less' : 'expand_more'"></span></button>
+</div>
+<div class="tab-content md:block" id="preferences-panel" x-show="activeTab === 'preferences'">
+<div class="bg-white rounded-lg shadow-sm p-6 border border-[var(--border-color)]">
+<form @submit.prevent="loading = true; setTimeout(() =&gt; { loading = false; lastSavedAt = new Date().toLocaleString() }, 1000)">
+<h3 class="text-lg font-semibold text-[var(--text-primary)] mb-6">Preferences</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 rounded-md bg-gray-50 border">
+<div>
+<p class="font-medium text-[var(--text-primary)]">Two-Factor Authentication</p>
+<p class="text-sm text-[var(--text-secondary)]">Enhance your account security.</p>
+</div>
+<label aria-label="Toggle Two-Factor Authentication" class="switch">
+<input type="checkbox" x-model="users.two_factor_enabled"/>
+<span class="slider"></span>
+</label>
+</div>
+<div class="flex items-center justify-between p-4 rounded-md bg-gray-50 border">
+<div>
+<p class="font-medium text-[var(--text-primary)]">Theme</p>
+<p class="text-sm text-[var(--text-secondary)]">Switch between light and dark mode.</p>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Switch to light mode" class="p-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="button">
+<span class="material-symbols-outlined">light_mode</span>
+</button>
+<button aria-label="Switch to dark mode" class="p-2 rounded-md hover:bg-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="button">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+</div>
+<div class="p-4 rounded-md bg-gray-50 border">
+<label class="block text-sm font-medium text-[var(--text-primary)] mb-2" for="language">Language</label>
+<select aria-label="Select language" class="block w-full md:w-1/3 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" id="language">
+<option>English (United States)</option>
+<option>Español</option>
+<option>Français</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end items-center gap-4 mt-8">
+<span class="animate-spin rounded-full h-5 w-5 border-b-2 border-[var(--primary-color)]" x-show="loading"></span>
+<span class="text-sm text-gray-500" x-show="lastSavedAt">Last saved at <span x-text="lastSavedAt"></span></span>
+<button :disabled="loading" class="px-6 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--primary-color)]" type="submit">
+                                    Save Preferences
+                                </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

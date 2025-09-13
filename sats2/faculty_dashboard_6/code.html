@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Faculty Dashboard</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+      :root {
+        --primary-color: #1173d4;
+        --secondary-color: #e7f1fc;
+        --text-primary: #1a202c;
+        --text-secondary: #4a5568;
+        --background-color: #f7fafc;
+        --border-color: #e2e8f0;
+      }
+      .radial-progress {
+        --value: 0;
+        --size: 5rem;
+        --thickness: 0.5rem;
+        width: var(--size);
+        height: var(--size);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: conic-gradient(
+          var(--primary-color) calc(var(--value) * 1%),
+          #e2e8f0 0
+        );
+        position: relative;
+      }
+      .radial-progress::before {
+        content: '';
+        position: absolute;
+        width: calc(var(--size) - var(--thickness) * 2);
+        height: calc(var(--size) - var(--thickness) * 2);
+        background: white;
+        border-radius: 50%;
+      }
+      .group:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex min-h-screen">
+<aside class="w-64 bg-white shadow-md flex-shrink-0">
+<div class="p-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">school</span>
+<h1 class="text-[var(--text-primary)] text-xl font-bold">EduTrack</h1>
+</div>
+<p class="text-[var(--text-secondary)] text-sm mt-1">Faculty View</p>
+</div>
+<nav class="mt-8 px-4">
+<ul>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span>Attendance</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="absolute bottom-0 w-64 p-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md hover:bg-gray-100 text-[var(--text-secondary)] font-medium" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-8">
+<header class="flex justify-between items-center mb-8">
+<div>
+<h1 class="text-3xl font-bold text-[var(--text-primary)]">Dashboard</h1>
+<p class="text-[var(--text-secondary)] mt-1">Welcome, Professor Davis</p>
+</div>
+<div class="flex items-center gap-4">
+<a aria-label="Go to Class In-Charge Dashboard" class="px-3 py-2 text-sm font-medium text-[var(--text-secondary)] bg-white border border-gray-200 rounded-md hover:bg-gray-100 hover:text-[var(--primary-color)] focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 flex items-center gap-2" href="/incharge/dashboard">
+<span class="material-symbols-outlined">switch_account</span>
+<span>Go to Class In-Charge Dashboard</span>
+</a>
+<button class="relative">
+<span class="material-symbols-outlined text-2xl text-[var(--text-secondary)]">notifications</span>
+<span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+</button>
+<img alt="Professor Davis" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw2ODilqn1aOwQDfGMe7oSUnc--1HcBJfo0_-tqXXwpzGkAKxqCKd5s1mbrTHxl412iM9EXNIvnzTa95qbnMP7M7xVQuMXsD-MF3-PnhuNkmN_6CZsysmZqgpbTCncI7U7GgKIHiHbwmWLXTxPuNHyKw2OSVXyZbfq32nyhxlpGhdX_FSG3DQyccsr-MlPd59Y-LRe1F505UkL4lEzRcrd3lHrH0CDr_K1oRfN_mX1G5xnSkb6HQQmO7J4k8VB9sQUeKnLfjGQBII0"/>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2">
+<section>
+<h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Class Schedule &amp; Actions</h2>
+<div class="space-y-6">
+<div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-green-500">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between">
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="text-lg font-bold text-[var(--text-primary)]">Data Structures</h3>
+<span class="text-sm text-[var(--text-secondary)]">CSE-B</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] mt-1 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>10:30 AM - 11:30 AM</span>
+<span class="font-bold text-green-600 ml-2">(Current)</span>
+</p>
+</div>
+<div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
+<a class="w-full md:w-auto px-4 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-[var(--primary-color)] text-white hover:bg-blue-700 transition-colors" href="#">
+<span class="material-symbols-outlined text-base">play_circle</span>
+Start Session
+</a>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-blue-500">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between">
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="text-lg font-bold text-[var(--text-primary)]">Operating Systems</h3>
+<span class="text-sm text-[var(--text-secondary)]">IT-A</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] mt-1 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>1:00 PM - 2:00 PM</span>
+</p>
+</div>
+<div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
+<button class="w-full md:w-auto px-4 py-2 inline-flex justify-center items-center gap-2 text-sm font-semibold rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] hover:bg-blue-200 transition-colors">
+<span class="material-symbols-outlined text-lg">play_circle</span>
+Start Session
+</button>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-gray-300 opacity-80">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between">
+<div class="flex-1">
+<div class="flex items-center gap-3">
+<h3 class="text-lg font-bold text-gray-500">Intro to Programming</h3>
+<span class="text-sm text-gray-400">CSE-A</span>
+</div>
+<p class="text-sm text-gray-500 mt-1 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>9:00 AM - 10:00 AM</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-semibold bg-green-100 text-green-700 ml-2">
+<span class="material-symbols-outlined text-sm">sensors</span>
+Active Session
+</span>
+</p>
+</div>
+<div class="mt-4 md:mt-0 md:ml-4 flex-shrink-0">
+<button class="w-full md:w-auto px-4 py-2 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-md bg-gray-200 text-gray-600 cursor-not-allowed">
+Manage
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-8">
+<h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Subject-wise Attendance Summary</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-white rounded-lg shadow-sm p-4 flex items-center gap-4">
+<div class="radial-progress" style="--value: 92">
+<span class="z-10 text-lg font-bold text-[var(--text-primary)]">92%</span>
+</div>
+<div>
+<h3 class="text-md font-semibold text-[var(--text-primary)]">Intro to Programming</h3>
+<p class="text-sm text-[var(--text-secondary)]">Section A</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-4 flex items-center gap-4">
+<div class="radial-progress" style="--value: 85">
+<span class="z-10 text-lg font-bold text-[var(--text-primary)]">85%</span>
+</div>
+<div>
+<h3 class="text-md font-semibold text-[var(--text-primary)]">Data Structures</h3>
+<p class="text-sm text-[var(--text-secondary)]">Section B</p>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm p-4 flex items-center gap-4">
+<div class="radial-progress" style="--value: 95">
+<span class="z-10 text-lg font-bold text-[var(--text-primary)]">95%</span>
+</div>
+<div>
+<h3 class="text-md font-semibold text-[var(--text-primary)]">Operating Systems</h3>
+<p class="text-sm text-[var(--text-secondary)]">Section A</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<div class="lg:col-span-1 space-y-8">
+<section>
+<h2 class="text-xl font-semibold text-[var(--text-primary)] mb-4">Recent Attendance Actions</h2>
+<div class="bg-white rounded-lg shadow-sm p-4">
+<div class="flex flex-col sm:flex-row gap-2 mb-4">
+<select class="w-full sm:w-1/3 text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+<option>Filter Subject</option>
+<option>All Subjects</option>
+<option>Data Structures</option>
+<option>Operating Systems</option>
+<option>Intro to Programming</option>
+</select>
+<input class="w-full sm:w-1/3 text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="date"/>
+<select class="w-full sm:w-1/3 text-sm rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+<option>Sort By</option>
+<option>Recent</option>
+<option>Lowest Attendance</option>
+<option>Subject-wise</option>
+</select>
+</div>
+<ul class="space-y-4">
+<li class="p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-md text-[var(--text-primary)]">Data Structures <span class="text-sm font-medium text-[var(--text-secondary)]">- CSE-B</span></h4>
+<p class="text-xs text-gray-500 flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-sm">schedule</span> 10:30 AM - 11:30 AM (1hr)</p>
+<div class="flex items-center gap-3 mt-2 text-xs">
+<div class="flex items-center gap-1 text-green-600"><span class="material-symbols-outlined text-sm">person</span>42/45</div>
+<div class="w-20 h-2 bg-gray-200 rounded-full"><div class="w-[93%] h-2 bg-green-500 rounded-full"></div></div>
+<span class="font-semibold text-green-600">93%</span>
+</div>
+</div>
+<div class="flex gap-1">
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">edit</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">Edit</span>
+</button>
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">assessment</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">View Report</span>
+</button>
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">download</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">Export</span>
+</button>
+</div>
+</div>
+</li>
+<li class="p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-md text-[var(--text-primary)]">Operating Systems <span class="text-sm font-medium text-[var(--text-secondary)]">- IT-A</span></h4>
+<p class="text-xs text-gray-500 flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-sm">schedule</span> 1:00 PM - 2:00 PM (1hr)</p>
+<div class="flex items-center gap-3 mt-2 text-xs">
+<div class="flex items-center gap-1 text-red-600"><span class="material-symbols-outlined text-sm">person</span>35/50</div>
+<div class="w-20 h-2 bg-gray-200 rounded-full"><div class="w-[70%] h-2 bg-red-500 rounded-full"></div></div>
+<span class="font-semibold text-red-600">70%</span>
+</div>
+</div>
+<div class="flex gap-1">
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">edit</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">Edit</span>
+</button>
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">assessment</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">View Report</span>
+</button>
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">download</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">Export</span>
+</button>
+</div>
+</div>
+</li>
+<li class="p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-md text-[var(--text-primary)]">Intro to Programming <span class="text-sm font-medium text-[var(--text-secondary)]">- CSE-A</span></h4>
+<p class="text-xs text-gray-500 flex items-center gap-1 mt-1"><span class="material-symbols-outlined text-sm">schedule</span> 9:00 AM - 10:00 AM (1hr)</p>
+<div class="flex items-center gap-3 mt-2 text-xs">
+<div class="flex items-center gap-1 text-orange-600"><span class="material-symbols-outlined text-sm">person</span>48/60</div>
+<div class="w-20 h-2 bg-gray-200 rounded-full"><div class="w-[80%] h-2 bg-orange-500 rounded-full"></div></div>
+<span class="font-semibold text-orange-600">80%</span>
+</div>
+</div>
+<div class="flex gap-1">
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">edit</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">Edit</span>
+</button>
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">assessment</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">View Report</span>
+</button>
+<button class="relative group p-1.5 rounded-full hover:bg-gray-200 transition-colors">
+<span class="material-symbols-outlined text-lg text-[var(--text-secondary)]">download</span>
+<span class="tooltip invisible absolute -top-8 left-1/2 -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-md px-2 py-1 opacity-0 transition-opacity">Export</span>
+</button>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

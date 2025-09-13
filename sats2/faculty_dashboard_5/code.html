@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Noto+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<title>EduTrack - Class Attendance Overview</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-color: #1173d4;
+            --secondary-color: #e7f1fc;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --background-color: #f7fafc;
+            --border-color: #e2e8f0;
+        }
+        .sidebar-link:hover {
+            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold;
+        }
+    </style>
+</head>
+<body class="bg-[var(--background-color)]" style='font-family: Manrope, "Noto Sans", sans-serif;'>
+<div class="flex min-h-screen">
+<aside class="w-64 bg-white shadow-md flex-shrink-0 hidden lg:flex flex-col">
+<div class="p-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-3xl text-[var(--primary-color)]">school</span>
+<h1 class="text-[var(--text-primary)] text-xl font-bold">EduTrack</h1>
+</div>
+<div class="mt-2 text-sm text-center text-[var(--text-secondary)] font-semibold">Class Incharge View</div>
+</div>
+<nav class="mt-6 px-4 flex-1">
+<ul>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md bg-[var(--secondary-color)] text-[var(--primary-color)] font-semibold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">checklist</span>
+<span>Attendance</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span>Reports</span>
+</a>
+</li>
+<li class="mb-2">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="p-4">
+<a class="flex items-center gap-3 px-4 py-2 rounded-md text-[var(--text-secondary)] font-medium sidebar-link" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span>Help</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-4 sm:p-8">
+<header class="flex justify-between items-center mb-8">
+<div>
+<h1 class="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">Class Attendance Overview</h1>
+<p class="text-sm sm:text-base text-[var(--text-secondary)]">CSE-B | 3rd Year</p>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="View notifications" class="relative">
+<span class="material-symbols-outlined text-2xl text-[var(--text-secondary)]">notifications</span>
+<span class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-full shadow-sm">
+<img alt="Class Incharge" class="h-8 w-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFXW6939nS4l8l38_lC9wSvo6q9yD2gqV0TJGcM6_e58N967MvDq2V-s_wH_mI-sWj3n12rV_P4Y-E42sW05f32K9d73u3k-oT34fV9b5h3a4bQ1-c7Zp2D"/>
+<div class="text-sm font-semibold text-[var(--text-primary)]">
+<span class="hidden sm:inline">Mrs. Davis – </span>Incharge
+                        </div>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white p-5 rounded-lg shadow-sm flex items-center gap-4">
+<div class="p-3 rounded-full bg-blue-100">
+<span class="material-symbols-outlined text-2xl text-blue-500">groups</span>
+</div>
+<div>
+<p class="text-sm text-[var(--text-secondary)]">Total Students</p>
+<p class="text-2xl font-bold text-[var(--text-primary)]">62</p>
+</div>
+</div>
+<div class="bg-white p-5 rounded-lg shadow-sm flex items-center gap-4">
+<div class="p-3 rounded-full bg-green-100">
+<span class="material-symbols-outlined text-2xl text-green-500">how_to_reg</span>
+</div>
+<div>
+<p class="text-sm text-[var(--text-secondary)]">Present Today</p>
+<p class="text-2xl font-bold text-[var(--text-primary)]">58</p>
+</div>
+</div>
+<div class="bg-white p-5 rounded-lg shadow-sm flex items-center gap-4">
+<div class="p-3 rounded-full bg-red-100">
+<span class="material-symbols-outlined text-2xl text-red-500">person_off</span>
+</div>
+<div>
+<p class="text-sm text-[var(--text-secondary)]">Absent Today</p>
+<p class="text-2xl font-bold text-[var(--text-primary)]">3</p>
+</div>
+</div>
+<div class="bg-white p-5 rounded-lg shadow-sm flex items-center gap-4">
+<div class="p-3 rounded-full bg-yellow-100">
+<span class="material-symbols-outlined text-2xl text-yellow-500">assignment_ind</span>
+</div>
+<div>
+<p class="text-sm text-[var(--text-secondary)]">On Duty / Permission</p>
+<p class="text-2xl font-bold text-[var(--text-primary)]">1</p>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm mb-8">
+<div class="p-4 sm:p-6 border-b border-[var(--border-color)] flex justify-between items-center">
+<h3 class="text-lg font-semibold text-[var(--text-primary)]">Weekly Attendance Trend</h3>
+<div class="relative">
+<select aria-label="Select time period" class="w-full text-sm rounded-md border-gray-300 shadow-sm focus:border-[var(--primary-color)] focus:ring focus:ring-[var(--primary-color)] focus:ring-opacity-50">
+<option>Weekly</option>
+<option>Monthly</option>
+</select>
+</div>
+</div>
+<div class="p-4 sm:p-6">
+<div class="h-72 flex items-end justify-around">
+<div class="flex flex-col items-center w-16">
+<div class="h-full w-8 bg-gray-200 rounded-t-lg flex items-end">
+<div class="w-full bg-[var(--primary-color)] rounded-t-lg" style="height: 95%;"></div>
+</div>
+<span class="mt-2 text-sm text-[var(--text-secondary)]">Mon</span>
+</div>
+<div class="flex flex-col items-center w-16">
+<div class="h-full w-8 bg-gray-200 rounded-t-lg flex items-end">
+<div class="w-full bg-[var(--primary-color)] rounded-t-lg" style="height: 98%;"></div>
+</div>
+<span class="mt-2 text-sm text-[var(--text-secondary)]">Tue</span>
+</div>
+<div class="flex flex-col items-center w-16">
+<div class="h-full w-8 bg-gray-200 rounded-t-lg flex items-end">
+<div class="w-full bg-[var(--primary-color)] rounded-t-lg" style="height: 92%;"></div>
+</div>
+<span class="mt-2 text-sm text-[var(--text-secondary)]">Wed</span>
+</div>
+<div class="flex flex-col items-center w-16">
+<div class="h-full w-8 bg-gray-200 rounded-t-lg flex items-end">
+<div class="w-full bg-[var(--primary-color)] rounded-t-lg" style="height: 85%;"></div>
+</div>
+<span class="mt-2 text-sm text-[var(--text-secondary)]">Thu</span>
+</div>
+<div class="flex flex-col items-center w-16">
+<div class="h-full w-8 bg-gray-200 rounded-t-lg flex items-end">
+<div class="w-full bg-[var(--primary-color)] rounded-t-lg" style="height: 93%;"></div>
+</div>
+<span class="mt-2 text-sm text-[var(--text-secondary)]">Fri</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white rounded-lg shadow-sm">
+<div class="p-4 border-b border-[var(--border-color)]">
+<h3 class="text-lg font-semibold text-[var(--text-primary)]">Low Attendance Students List</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-[var(--text-secondary)]">
+<thead class="text-xs text-[var(--text-secondary)] uppercase bg-gray-50">
+<tr>
+<th class="px-6 py-3" scope="col">Student Name</th>
+<th class="px-6 py-3" scope="col">Roll Number</th>
+<th class="px-6 py-3 text-center" scope="col">Attendance %</th>
+<th class="px-6 py-3 text-center" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="Olivia Chen" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwYPHF4bPNPjWG7mjwttWqpNXSy6A0vxjsh9O8I5qwRZjknTd3X-ULZ-_Gs3aclSDEgQ2vbvQTYeOQYUznqkj2sgzIc-yfgCr2mU-hn8PpRcGlAK3ks0v6z7rED3D7dns8EBtFUBY0xQw2_LzUNlaIWYaZPbsqI0GLb0Y2XbgkMike46TJdxPGsKbULF5CjLizirV2IK-XRlgYWv2TqmCcrHHCV7-_CB0ADVjmSQ1buOzuuojSnh7pKvUoTLotK8jHZKuaBTIdaPVf"/>
+                                        Olivia Chen
+                                    </div>
+</td>
+<td class="px-6 py-4">CSE2025</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700">68%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">View Details</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="Liam Rodriguez" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF6OISx5xsjtVtNeQXX3NzLSpkMp7HuXfwyiSyxS7g1KJH_XltdY42S6Lo1GvXVSuopSg0V-LGzY28qDCd-SXwgPeQ8cCDpaMwUP_XTUrOpFhsKWZ3-fxT0F_gIZct2ihjGy9ecTWm6WAxxK0vRslQtX2t3lC_9cu60yhe_GIK3cLyXTtO86BbJ_9C5kRAWO8DXnGPpJHwDl57IcKcp7Hfk2oVL1VQd8icPx0Z6-kLyqexxN-g9-rRDp09ihF4Q37CUYPnK3Xoxd4R"/>
+                                        Liam Rodriguez
+                                    </div>
+</td>
+<td class="px-6 py-4">CSE2011</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-700">71%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">View Details</a>
+</td>
+</tr>
+<tr class="bg-white border-b hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="Sophia Patel" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAafzqJEzsCfM1XuOjbFj1QErBha21TE_DTvHri5zqXRX4izOTnKrIDNa7DbhR87DSiLu375MaxVfzZFNv6Cnmb5kYw8LO_bgNTo06NHL1eZZaoS55kXyQ4W9mKgdvtm1OZo85Z-Rpol6T-xtl5qsvVIj4AQ7-sh-dHhC_FH1nyovsCrgUYXX-6SYEmU4vUqmezq0I8IV-2y8GlBWxSsuZsQb0-t5jhABTWamwzqWR7zKzyqn7h90RK0vEjTlQE6eKWUo7Jc8xZOn7U"/>
+                                        Sophia Patel
+                                    </div>
+</td>
+<td class="px-6 py-4">CSE2042</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">78%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">View Details</a>
+</td>
+</tr>
+<tr class="bg-white hover:bg-gray-50">
+<td class="px-6 py-4 font-medium text-[var(--text-primary)] whitespace-nowrap">
+<div class="flex items-center gap-3">
+<img alt="Noah Kim" class="h-10 w-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu-7aORUOQ9Bt1jgKU5c3hMab7cHWvP7lSn0nUdn4HqFmeGk5Ex8TDcUVri7hQ00lwZFYvjgqwQBkZS56rK6LosjRYK67EJmDKVrxlyQWOuUkrUdF61Vg4YhdEWY9GR5BheH_Lg6nuVKSlBsv0y_6Ko9YWAMQqPO8XjItlOhbSBaohgIWoFGNW262jxIyCtRgLsydlELcbIaGPZ_ZOGlILpdS7laDxBaO7hgWGml6cWwOuIOKenKNAzUfUv9a4MfbMyW8O_xaDD0TS"/>
+                                        Noah Kim
+                                    </div>
+</td>
+<td class="px-6 py-4">CSE2033</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">92%</span>
+</td>
+<td class="px-6 py-4 text-center">
+<a class="font-medium text-[var(--primary-color)] hover:underline" href="#">View Details</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 flex justify-between items-center">
+<span class="text-sm text-[var(--text-secondary)]">Showing 1 to 4 of 12 students</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-sm font-medium rounded-md text-[var(--text-secondary)] hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled="">« Previous</button>
+<button class="px-3 py-1.5 text-sm font-medium rounded-md text-[var(--text-secondary)] hover:bg-gray-100 transition-colors">Next »</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
